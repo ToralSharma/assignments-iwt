@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Cards</title>
+<style>
+    .event-card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 10px;
+        width: 300px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    .event-card img {
+        width: 100%;
+        border-radius: 5px;
+    }
+    .event-card h3 {
+        margin-top: 0;
+    }
+    .event-card p {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="event-container"></div>
+
+<script>
+// Array of event objects with image, title, date, and description fields
+const events = [
+    {
+        image: "image1.jpg",
+        title: "Event 1",
+        date: "March 20, 2024",
+        description: "This is the description of Event 1."
+    },
+    {
+        image: "image2.jpg",
+        title: "Event 2",
+        date: "April 5, 2024",
+        description: "This is the description of Event 2."
+    },
+    {
+        image: "image3.jpg",
+        title: "Event 3",
+        date: "May 15, 2024",
+        description: "This is the description of Event 3."
+    }
+];
+
+// Function to generate event cards
+function generateEventCards() {
+    const eventContainer = document.getElementById("event-container");
+
+    // Loop through the events array
+    events.forEach(event => {
+        // Create event card div
+        const card = document.createElement("div");
+        card.classList.add("event-card");
+
+        // Create image element
+        const image = document.createElement("img");
+        image.src = event.image;
+        card.appendChild(image);
+
+        // Create title element
+        const title = document.createElement("h3");
+        title.textContent = event.title;
+        card.appendChild(title);
+
+        // Create date element
+        const date = document.createElement("p");
+        date.textContent = "Date: " + event.date;
+        card.appendChild(date);
+
+        // Create description element
+        const description = document.createElement("p");
+        description.textContent = event.description;
+        card.appendChild(description);
+
+        // Append event card to event container
+        eventContainer.appendChild(card);
+    });
+}
+
+// Call the function to generate event cards
+generateEventCards();
+</script>
+
+</body>
+</html>
+

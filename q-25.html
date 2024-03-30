@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+</head>
+<body>
+
+<h2>Temperature Converter</h2>
+<label for="tempInput">Enter temperature:</label>
+<input type="number" id="tempInput">
+<select id="unitSelect">
+  <option value="kelvin">Kelvin</option>
+  <option value="celsius">Celsius</option>
+  <option value="fahrenheit">Fahrenheit</option>
+</select>
+<button onclick="convertTemperature()">Convert</button>
+
+<p id="result"></p>
+
+<script>
+function convertTemperature() {
+    // Get input value and selected unit
+    const tempInput = parseFloat(document.getElementById("tempInput").value);
+    const unit = document.getElementById("unitSelect").value;
+
+    // Convert temperature based on selected unit
+    let result;
+    switch(unit) {
+        case "kelvin":
+            result = {
+                kelvin: tempInput,
+                celsius: tempInput - 273.15,
+                fahrenheit: (tempInput - 273.15) * 9/5 + 32
+            };
+            break;
+        case "celsius":
+            result = {
+                kelvin: tempInput + 273.15,
+                celsius: tempInput,
+                fahrenheit: tempInput * 9/5 + 32
+            };
+            break;
+        case "fahrenheit":
+            result = {
+                kelvin: (tempInput - 32) * 5/9 + 273.15,
+                celsius: (tempInput - 32) * 5/9,
+                fahrenheit: tempInput
+            };
+            break;
+    }
+
+    // Display the result
+    document.getElementById("result").textContent = `Converted temperature:
+    Kelvin: ${result.kelvin.toFixed(2)}
+    Celsius: ${result.celsius.toFixed(2)}
+    Fahrenheit: ${result.fahrenheit.toFixed(2)}`;
+}
+</script>
+
+</body>
+</html>
+

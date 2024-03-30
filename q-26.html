@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        width: 400px;
+        margin: 0 auto;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .error-message {
+        color: red;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Registration Form</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName">
+            <span id="firstNameError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName">
+            <span id="lastNameError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="userId">User ID (Banasthali ID):</label>
+            <input type="text" id="userId" name="userId">
+            <span id="userIdError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <span id="passwordError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <span id="confirmPasswordError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            <span id="addressError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email">
+            <span id="emailError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" id="contactNumber" name="contactNumber">
+            <span id="contactNumberError" class="error-message"></span>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script>
+function validateForm() {
+    // Get form inputs
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const userId = document.getElementById("userId").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const contactNumber = document.getElementById("contactNumber").value.trim();
+
+    // Regular expressions for validation
+    const nameRegex = /^[a-zA-Z]+$/;
+    const userIdRegex = /^[a-zA-Z0-9]+$/;
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    const contactNumberRegex = /^\d{10}$/;
+
+    // Error flags
+    let hasError = false;
+
+    // Clear previous error messages
+    document.querySelectorAll(".error-message").forEach(element => {
+        element.textContent = "";
+    });
+
+    // Validate first name
+    if (!firstName) {
+        document.getElementById("firstNameError").textContent = "First name is required";
+        hasError = true;
+    } else if (!nameRegex.test(firstName)) {
+        document.getElementById("firstNameError").textContent = "Invalid first name";
+        hasError = true;
+    }
+
+    // Validate last name (optional)
+    if (lastName && !nameRegex.test(lastName)) {
+        document.getElementById("lastNameError").textContent = "Invalid last name";
+        hasError = true;
+    }
+
+    // Validate user ID
+    if (!userId) {
+        document.getElementById("userIdError").textContent = "User ID is required";
+        hasError = true;
+    } else if (!userIdRegex.test(userId)) {
+        document.getElementById("userIdError").textContent = "Invalid User ID";
+        hasError = true;
+    }
+
+    // Validate password
+    if (!password) {
+        document.getElementById("passwordError").textContent = "Password is required";
+        hasError = true;
+    }
+
+    // Validate confirm password
+    if (!confirmPassword) {
+        document.getElementById("confirmPasswordError").textContent = "Confirm password is required";
+        hasError = true;
+    } else if (confirmPassword !== password) {
+        document.getElementById("confirmPasswordError").textContent = "Passwords do not match";
+        hasError = true;
+    }
+
+    
+       // Validate address
+    if (!address) {
+        document.getElementById("addressError").textContent = "Address is required";
+        hasError = true;
+    }
+
+    // Validate email
+    if (!email) {
+        document.getElementById("emailError").textContent = "Email is required";
+        hasError = true;
+    } else if (!emailRegex.test(email)) {
+        document.getElementById("emailError").textContent = "Invalid email format";
+        hasError = true;
+    }
+
+    // Validate contact number
+    if (!contactNumber) {
+        document.getElementById("contactNumberError").textContent = "Contact number is required";
+        hasError = true;
+    } else if (!contactNumberRegex.test(contactNumber)) {
+        document.getElementById("contactNumberError").textContent = "Invalid contact number";
+        hasError = true;
+    }
+
+    // If any validation fails, prevent form submission
+    if (hasError) {
+        return false;
+    }
+
+    // If all validations pass, allow form submission
+    return true;
+}
+</script>
+</body>
+</html>

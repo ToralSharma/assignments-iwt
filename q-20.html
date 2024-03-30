@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timer</title>
+</head>
+<body>
+
+<button onclick="startTimer()">Start</button>
+<button onclick="stopTimer()">Stop</button>
+<p id="timer">0 seconds</p>
+
+<script>
+let timerInterval; // Variable to hold the timer interval
+
+function startTimer() {
+    let seconds = 0; // Initialize seconds counter
+
+    // Update timer display every second
+    timerInterval = setInterval(function() {
+        seconds++;
+        document.getElementById("timer").textContent = seconds + " seconds";
+    }, 1000); // Update every 1000 milliseconds (1 second)
+}
+
+function stopTimer() {
+    clearInterval(timerInterval); // Clear the interval to stop the timer
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greeting Message</title>
+</head>
+<body>
+
+<div id="greeting"></div>
+
+<script>
+function displayGreeting() {
+    const now = new Date(); // Get the current date and time
+    const hour = now.getHours(); // Get the current hour
+
+    let greetingMessage;
+    if (hour < 12) {
+        greetingMessage = "Good morning";
+    } else if (hour < 18) {
+        greetingMessage = "Good afternoon";
+    } else {
+        greetingMessage = "Good evening";
+    }
+
+    const username = prompt("Please enter your name:");
+    const message = `${greetingMessage}, ${username}! Click to hide.`;
+
+    const greetingElement = document.getElementById("greeting");
+    greetingElement.textContent = message;
+
+    // Hide greeting message when clicked
+    greetingElement.addEventListener("click", function() {
+        greetingElement.style.display = "none";
+    });
+}
+
+// Call the function to display the greeting message
+displayGreeting();
+</script>
+
+</body>
+</html>
